@@ -72,6 +72,7 @@ apply_n :database
 apply_n :rspec
 apply_n :backbone
 apply_n :javascripts
+apply_n :stylesheets
 apply_n :generators
 apply_n :gems
 apply_n :rvm
