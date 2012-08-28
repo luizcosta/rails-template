@@ -46,6 +46,18 @@ def apply_n(partial)
   apply "#{@partials}/_#{partial}.rb"
 end
 
+def would_you_like?(question)
+  answer = ask("#{question}".red)
+  case answer.downcase
+    when "yes", "y"
+      true
+    when "no", "n"
+      false
+    else
+      would_you_like?(question)
+  end
+end
+
 puts "\n========================================================="
 puts " STARTUPDEV RAILS 3 TEMPLATE".yellow.bold
 puts "=========================================================\n"
@@ -62,7 +74,11 @@ apply_n :javascripts
 apply_n :generators
 apply_n :gems
 apply_n :rvm
-apply_n :heroku
+apply_n :simple_form
+
+after_bundler do
+  apply_n :heroku
+end
 
 run 'bundle install'
 puts "\nRunning after Bundler callbacks."
