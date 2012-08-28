@@ -12,4 +12,15 @@ git :commit => "-aqm 'Add rails locale for pt-BR.'"
 copy_static_file '.gitignore'
 git :add => '.'
 git :commit => "-aqm 'Add .gitignore'"
+
+
+gsub_file 'app/controllers/application_controller.rb', "end", "
+  protected
+  def render_404
+    raise ActionController::RoutingError.new('Not Found')
+  end
+end
+"
+git :add => '.'
+git :commit => "-aqm 'Add render_404 to application controller'"
 puts "\n"
