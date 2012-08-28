@@ -47,5 +47,9 @@ ROUTES
   run "cp -rf #{@static_files}/app/views/devise/ app/views/devise/"
   git :add => '.'
   git :commit => "-aqm 'Create Devise views'"
+
+  in_root do
+    run "rake db:migrate"
+  end
 end
 
