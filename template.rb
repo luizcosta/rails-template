@@ -35,10 +35,11 @@ def after_everything(&block); @after_everything_blocks << [@current_recipe, bloc
 def before_config(&block); @before_configs[@current_recipe] = block; end
 
 # Copy a static file from the template into the new application
-def copy_static_file(path)
+def copy_static_file(path, new_path = false)
   # puts "Installing #{path}...".magenta
-  remove_file path
-  file path, File.read(File.join(@static_files, path))
+  new_path = path unless new_path
+  remove_file new_path
+  file new_path, File.read(File.join(@static_files, path))
   # puts "\n"
 end
 
@@ -62,7 +63,11 @@ apply_n :javascripts
 apply_n :generators
 apply_n :gems
 apply_n :rvm
-apply_n :heroku
+apply_n :devise_omniauth
+
+after_bundler do
+  apply_n :heroku
+end
 
 run 'bundle install'
 puts "\nRunning after Bundler callbacks."
