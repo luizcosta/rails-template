@@ -3,7 +3,6 @@
 *.sassc
 .sass-cache
 capybara-*.html
-.rspec
 /.bundle
 /vendor/bundle
 /log/*
@@ -13,5 +12,6 @@ capybara-*.html
 /coverage/
 /spec/tmp/*
 **.orig
-rerun.txt
-pickle-email-*.html
+config/database.yml
+db/schema.rb
+
