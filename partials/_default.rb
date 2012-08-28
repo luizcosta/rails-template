@@ -10,7 +10,6 @@ git :add => '.'
 git :commit => "-aqm 'Add rails locale for pt-BR.'"
 
 copy_static_file '.gitignore'
-
 git :add => '.'
-git :commit => "-aqm 'Add default stuff.'"
+git :commit => "-aqm 'Add .gitignore'"
 puts "\n"
