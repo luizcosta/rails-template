@@ -55,9 +55,9 @@ puts "=========================================================\n"
 
 apply_n :git
 apply_n :cleanup
+apply_n :default
 apply_n :database
 apply_n :rspec
-apply_n :default
 apply_n :backbone
 apply_n :javascripts
 apply_n :generators
