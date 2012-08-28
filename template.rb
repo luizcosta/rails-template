@@ -24,6 +24,16 @@ require "bundler"
 @partials     = File.join(@template_root, 'partials')
 @static_files = File.join(@template_root, 'files')
 
+@current_recipe = nil
+@configs = {}
+
+@after_blocks = []
+def after_bundler(&block); @after_blocks << [@current_recipe, block]; end
+@after_everything_blocks = []
+def after_everything(&block); @after_everything_blocks << [@current_recipe, block]; end
+@before_configs = {}
+def before_config(&block); @before_configs[@current_recipe] = block; end
+
 # Copy a static file from the template into the new application
 def copy_static_file(path)
   # puts "Installing #{path}...".magenta
@@ -45,19 +55,27 @@ puts "=========================================================\n"
 apply_n :git
 apply_n :cleanup
 apply_n :database
-apply_n :rspec      # TODO: rspec nao rolou no projeto POL, add simplecov.
-apply_n :default    # TODO: add p80, colocar default do fakeweb sem conexao
+apply_n :rspec
+apply_n :default
+apply_n :backbone
+apply_n :javascripts
 apply_n :generators
 apply_n :gems
 apply_n :rvm
-apply_n :finish
-apply_n :heroku
+#apply_n :heroku
 
 # apply_n :omniauth # TODO: add spec support files
                     # TODO: take care of facebook when user is not logged in on facebook (when app)
 # TODO: extrair phone validator to gem
 
+run 'bundle install'
+puts "\nRunning after Bundler callbacks."
+@after_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; b[1].call}
+
+@current_recipe = nil
+puts "\nRunning after everything callbacks."
+@after_everything_blocks.each{|b| config = @configs[b[0]] || {}; @current_recipe = b[0]; b[1].call}
+
 puts "\n========================================================="
 puts " INSTALLATION COMPLETE!".yellow.bold
 puts "=========================================================\n\n\n"
-def run_bundle; end
