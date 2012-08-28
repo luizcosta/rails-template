@@ -1,6 +1,10 @@
-after_bundler do
-  puts "Adding devise and omniauth".magenta
+puts "Adding devise and omniauth".magenta
+gsub_file 'Gemfile', /#gem "devise/, "gem \"devise"
+gsub_file 'Gemfile', /#gem "omniauth/, "gem \"omniauth"
+gsub_file 'Gemfile', /#gem "omniauth-facebook/, "gem \"omniauth-facebook"
+gsub_file 'Gemfile', /#gem "omniauth-twitter/, "gem \"omniauth-twitter"
 
+after_bundler do
   generate 'devise:install'
   configs = <<CONFIGS
 

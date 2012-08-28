@@ -1,15 +1,3 @@
-def would_you_like?(question)
-  answer = ask("#{question}".red)
-  case answer.downcase
-    when "yes", "y"
-      true
-    when "no", "n"
-      false
-    else
-      would_you_like?(question)
-  end
-end
-
 if would_you_like? "Configure/Create Heroku app? [y,n]".red
   say "Configuring Heroku application...".magenta
   heroku_name = @app_name.gsub('_','')
