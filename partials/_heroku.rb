@@ -1,3 +1,5 @@
+puts "Configuring/Creating the Heroku... ".magenta
+
 if would_you_like? "Configure/Create Heroku app? [y,n]".red
   say "Configuring Heroku application...".magenta
   heroku_name = @app_name.gsub('_','')

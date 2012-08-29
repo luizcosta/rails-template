@@ -1,3 +1,5 @@
+puts "Adding the Backbone.js and Underscore.js... ".magenta
+
 run "mkdir app/assets/javascripts/lib"
 run "mkdir app/assets/javascripts/app"
 run "echo '' > app/assets/javascripts/app/.gitkeep"

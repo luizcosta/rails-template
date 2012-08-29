@@ -1,3 +1,5 @@
+puts "Configuring the database... ".magenta
+
 copy_static_file 'config/database.sample.yml'
 gsub_file 'config/database.sample.yml', /PROJECT/, @app_name
 run 'cp -f config/database.sample.yml config/database.yml'
