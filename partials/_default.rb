@@ -1,4 +1,4 @@
-puts "Adding default files ...".magenta
+puts "Adding default stuff ...".magenta
 
 copy_static_file 'app/views/layouts/application.html.slim'
 gsub_file 'app/views/layouts/application.html.slim', /PROJECT/, @app_name

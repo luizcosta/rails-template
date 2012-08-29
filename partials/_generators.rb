@@ -1,3 +1,5 @@
+puts "Configuring the Rails Generators... ".magenta
+
 generators = <<GENERATORS
 
     # Do not generate specs for views and requests. Also, do not generate assets.
