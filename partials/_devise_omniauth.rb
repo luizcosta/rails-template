@@ -32,16 +32,19 @@ CONFIGS
   git :commit => "-aqm 'Create User and Authorization models.'"
 
   copy_static_file 'app/controllers/users/omniauth_callbacks_controller.rb'
+  copy_static_file 'app/controllers/authorizations_controller.rb'
+
   routes = <<ROUTES
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  resources :authorizations, only: [:destroy]
 ROUTES
 
   in_root do
     inject_into_file 'config/routes.rb', routes, {after: "RailsTemplateTest::Application.routes.draw do", verbose: false}
   end
   git :add => '.'
-  git :commit => "-aqm 'Create Users::OmniauthCallbacks controller'"
+  git :commit => "-aqm 'Create Users::OmniauthCallbacks and Authorizations controller'"
 
   run "mkdir app/views/devise/"
   run "cp -rf #{@static_files}/app/views/devise/ app/views/devise/"
