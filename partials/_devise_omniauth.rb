@@ -12,6 +12,8 @@ after_bundler do
   config.omniauth :twitter, 'APP_ID', 'APP_SECRET'
 CONFIGS
 
+  route "devise_for :users"
+
   in_root do
     inject_into_file 'config/initializers/devise.rb', configs, {before: "\nend", verbose: false}
   end
