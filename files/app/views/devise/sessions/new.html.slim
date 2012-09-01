@@ -1,5 +1,5 @@
 .sign_in_box
-  h2 Sign in
+  h2 = t(".sign_in")
   br/
   = render "devise/shared/social_links"
   = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
@@ -13,5 +13,5 @@
         = f.input_field :password, style: "width: 242px"
 
       = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
-      = f.button :submit, "Sign in", class: "btn-primary", style: "width: 280px"
+      = f.button :submit, t(".sign_in"), class: "btn-primary", style: "width: 280px"
     = render "devise/shared/links"
